@@ -81,10 +81,11 @@ export const bookSlice = createSlice({
         state.status = {...state.status, loading: true};
       })
       .addCase(removeFromReadingList.fulfilled, (state, action) => {
+        state.status = {loading: false, error: ""};
         toast.success("The book has been removed from reading list!")
       })
       .addCase(removeFromReadingList.rejected, (state, action) => {
-        state.status = {...state.status, error: "Failed to remove from reading list"};
+        state.status = {...state.status, loading: false, error: "Failed to remove from reading list"};
       });
       builder.addCase(getBookDetail.pending, (state) => {
         state.status = {...state.status, loading: true};
